@@ -1,10 +1,11 @@
+const { TypeBoxValidatorCompiler } = require('@fastify/type-provider-typebox')
 const { Type } = require('@sinclair/typebox')
 
 const app = require('fastify')({
     logger: true
 })
 
-app.withTypeProvider(require('@fastify/type-provider-typebox'))
+app.setValidatorCompiler(TypeBoxValidatorCompiler)
 
 const Schema = Type.Object({
     bar: Type.RegExp(/[0-9]{3,10}/i)
